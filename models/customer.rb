@@ -30,6 +30,12 @@ class Customer
   end
 
 
+  def delete()
+    sql = "DELETE FROM customers WHERE id = $1"
+    SqlRunner.run(sql, [@id])
+  end
+
+
   def self.all()
     sql = "SELECT * FROM customers;"
     results = SqlRunner.run(sql)
