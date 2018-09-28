@@ -37,7 +37,15 @@ class Film
   end
 
 
-
+  def update()
+    sql = "
+      UPDATE films
+      SET title = $1, price = $2
+      WHERE id = $3;
+    "
+    values = [@title, @price, @id]
+    SqlRunner.run(sql, values)
+  end
 
 
 end
