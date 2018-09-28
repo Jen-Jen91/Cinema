@@ -59,13 +59,6 @@ class Ticket
     result = SqlRunner.run(sql, [id])
     return Ticket.new(result[0])
   end
-
-
-###.film and .customer
-
-
-
-
-
+  
 
 end

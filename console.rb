@@ -41,27 +41,33 @@ ticket6.save()
 screening1 = Screening.new({
   "film_id" => film1.id,
   "ticket_id" => ticket1.id,
-  "screening_time" => "13:30"})
+  "screening_time" => "13:30",
+  "max_tickets" => 25})
 screening2 = Screening.new({
   "film_id" => film2.id,
   "ticket_id" => ticket2.id,
-  "screening_time" => "21:00"})
+  "screening_time" => "21:00",
+  "max_tickets" => 30})
 screening3 = Screening.new({
   "film_id" => film1.id,
   "ticket_id" => ticket3.id,
-  "screening_time" => "18:30"})
+  "screening_time" => "18:30",
+  "max_tickets" => 25})
 screening4 = Screening.new({
   "film_id" => film2.id,
   "ticket_id" => ticket4.id,
-  "screening_time" => "21:00"})
+  "screening_time" => "21:00",
+  "max_tickets" => 30})
 screening5 = Screening.new({
   "film_id" => film1.id,
   "ticket_id" => ticket5.id,
-  "screening_time" => "18:30"})
+  "screening_time" => "18:30",
+  "max_tickets" => 25})
 screening6 = Screening.new({
   "film_id" => film3.id,
   "ticket_id" => ticket6.id,
-  "screening_time" => "16:30"})
+  "screening_time" => "16:30",
+  "max_tickets" => 15})
 
 screening1.save()
 screening2.save()
@@ -69,17 +75,6 @@ screening3.save()
 screening4.save()
 screening5.save()
 screening6.save()
-
-
-
-
-
-
-
-
-
-
-
 
 
 binding.pry

@@ -96,10 +96,4 @@ class Customer
   end
 
 
-
-
-
-
-
-
 end

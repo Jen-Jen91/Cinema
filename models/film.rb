@@ -78,13 +78,15 @@ class Film
   end
 
 
-  def popular()
-    sql = "SELECT screenings.screening_time FROM screenings WHERE film_id = $1"
-
+  def popular_time()
+    sql = "
+      SELECT screenings.screening_time
+      FROM screenings
+      WHERE film_id = $1;
+    "
     results = SqlRunner.run(sql, [@id])
     screenings = results.map{|screening| Screening.new(screening)}
-
-    times = screenings.map{|screening| screening.screening_time}
+    times = screenings.map{|s_time| s_time.screening_time}
     return times.max_by{|time| times.count(time)}
   end
 
