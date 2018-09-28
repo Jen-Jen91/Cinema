@@ -54,4 +54,11 @@ class Film
   end
 
 
+  def self.find(id)
+    sql = "SELECT * FROM films WHERE id = $1;"
+    result = SqlRunner.run(sql, [id])
+    return Film.new(result[0])
+  end
+
+
 end

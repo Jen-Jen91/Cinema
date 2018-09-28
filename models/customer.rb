@@ -54,4 +54,13 @@ class Customer
   end
 
 
+  def self.find(id)
+    sql = "SELECT * FROM customers WHERE id = $1;"
+    result = SqlRunner.run(sql, [id])
+    return Customer.new(result[0])
+  end
+
+
+
+
 end
