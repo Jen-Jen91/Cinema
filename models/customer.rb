@@ -72,4 +72,34 @@ class Customer
     return results.map{|film| Film.new(film)}
   end
 
+
+  def buy_ticket()
+    sql = "
+      SELECT films.price FROM films
+      INNER JOIN tickets
+      ON films.id = tickets.film_id
+      WHERE tickets.customer_id = $1;
+    "
+    results = SqlRunner.run(sql, [@id])
+    price = results[0]["price"].to_i()
+    return @funds - price
+  end
+
+
+  def tickets()
+    sql = "
+      SELECT * FROM tickets
+      WHERE tickets.customer_id = $1;
+    "
+    results = SqlRunner.run(sql, [@id]).to_a()
+    return results.length()
+  end
+
+
+
+
+
+
+
+
 end

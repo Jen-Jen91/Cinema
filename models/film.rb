@@ -72,4 +72,10 @@ class Film
     return results.map{|customer| Customer.new(customer)}
   end
 
+
+  def how_many_customers()
+    customers.length()
+  end
+
+
 end
