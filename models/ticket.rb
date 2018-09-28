@@ -61,4 +61,11 @@ class Ticket
   end
 
 
+###.film and .customer
+
+
+
+
+
+
 end
