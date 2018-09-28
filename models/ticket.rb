@@ -30,7 +30,11 @@ class Ticket
   end
 
 
-
+  def self.all()
+    sql = "SELECT * FROM tickets;"
+    results = SqlRunner.run(sql)
+    return results.map {|ticket| Ticket.new(ticket)}
+  end
 
 
 
