@@ -3,23 +3,22 @@ require_relative("../db/sql_runner.rb")
 class Film
 
   attr_reader(:id)
-  attr_accessor(:title, :price, :screening_time)
+  attr_accessor(:title, :price)
 
   def initialize(options)
     @id = options["id"].to_i() if options["id"]
     @title = options["title"]
     @price = options["price"].to_i()
-    @screening_time = options["screening_time"]
   end
 
 
   def save()
     sql = "
-      INSERT INTO films(title, price, screening_time)
-      VALUES ($1, $2, $3)
+      INSERT INTO films(title, price)
+      VALUES ($1, $2)
       RETURNING id;
     "
-    values = [@title, @price, @screening_time]
+    values = [@title, @price]
     result = SqlRunner.run(sql, values)
     @id = result[0]["id"].to_i()
   end
@@ -47,10 +46,10 @@ class Film
   def update()
     sql = "
       UPDATE films
-      SET title = $1, price = $2, screening_time = $3
-      WHERE id = $4;
+      SET title = $1, price = $2
+      WHERE id = $3;
     "
-    values = [@title, @price, @screening_time, @id]
+    values = [@title, @price, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -76,6 +75,17 @@ class Film
 
   def how_many_customers()
     customers.length()
+  end
+
+
+  def popular()
+    sql = "SELECT screenings.screening_time FROM screenings WHERE film_id = $1"
+
+    results = SqlRunner.run(sql, [@id])
+    screenings = results.map{|screening| Screening.new(screening)}
+
+    times = screenings.map{|screening| screening.screening_time}
+    return times.max_by{|time| times.count(time)}
   end
 
 

@@ -16,20 +16,11 @@ customer2.save()
 customer3 = Customer.new({"name" => "Hermione Granger", "funds" => 25})
 customer3.save()
 
-film1 = Film.new({
-  "title" => "The Dark Knight",
-  "price" => 15,
-  "screening_time" => "18:30"})
+film1 = Film.new({"title" => "The Dark Knight", "price" => 15})
 film1.save()
-film2 = Film.new({
-  "title" => "Mad Max: Fury Road",
-  "price" => 20,
-  "screening_time" => "21:00"})
+film2 = Film.new({"title" => "Mad Max: Fury Road", "price" => 20})
 film2.save()
-film3 = Film.new({
-  "title" => "When Harry Met Sally",
-  "price" => 10,
-  "screening_time" => "16:30"})
+film3 = Film.new({"title" => "When Harry Met Sally", "price" => 10})
 film3.save()
 
 ticket1 = Ticket.new({"customer_id" => customer1.id, "film_id" => film1.id})
@@ -47,12 +38,30 @@ ticket5.save()
 ticket6.save()
 
 
-screening1 = Screening.new({"film_id" => film1.id, "ticket_id" => ticket1.id})
-screening2 = Screening.new({"film_id" => film2.id, "ticket_id" => ticket2.id})
-screening3 = Screening.new({"film_id" => film1.id, "ticket_id" => ticket3.id})
-screening4 = Screening.new({"film_id" => film2.id, "ticket_id" => ticket4.id})
-screening5 = Screening.new({"film_id" => film1.id, "ticket_id" => ticket5.id})
-screening6 = Screening.new({"film_id" => film3.id, "ticket_id" => ticket6.id})
+screening1 = Screening.new({
+  "film_id" => film1.id,
+  "ticket_id" => ticket1.id,
+  "screening_time" => "13:30"})
+screening2 = Screening.new({
+  "film_id" => film2.id,
+  "ticket_id" => ticket2.id,
+  "screening_time" => "21:00"})
+screening3 = Screening.new({
+  "film_id" => film1.id,
+  "ticket_id" => ticket3.id,
+  "screening_time" => "18:30"})
+screening4 = Screening.new({
+  "film_id" => film2.id,
+  "ticket_id" => ticket4.id,
+  "screening_time" => "21:00"})
+screening5 = Screening.new({
+  "film_id" => film1.id,
+  "ticket_id" => ticket5.id,
+  "screening_time" => "18:30"})
+screening6 = Screening.new({
+  "film_id" => film3.id,
+  "ticket_id" => ticket6.id,
+  "screening_time" => "16:30"})
 
 screening1.save()
 screening2.save()
