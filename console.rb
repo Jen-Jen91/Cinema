@@ -4,6 +4,7 @@ require_relative("./models/film.rb")
 require_relative("./models/ticket.rb")
 require_relative("./models/screening.rb")
 
+Screening.delete_all()
 Ticket.delete_all()
 Customer.delete_all()
 Film.delete_all()
@@ -53,7 +54,12 @@ screening4 = Screening.new({"film_id" => film2.id, "ticket_id" => ticket4.id})
 screening5 = Screening.new({"film_id" => film1.id, "ticket_id" => ticket5.id})
 screening6 = Screening.new({"film_id" => film3.id, "ticket_id" => ticket6.id})
 
-
+screening1.save()
+screening2.save()
+screening3.save()
+screening4.save()
+screening5.save()
+screening6.save()
 
 
 
