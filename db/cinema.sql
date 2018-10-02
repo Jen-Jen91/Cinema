@@ -24,7 +24,6 @@ CREATE TABLE tickets(
 CREATE TABLE screenings(
   id SERIAL8 PRIMARY KEY,
   film_id INT8 REFERENCES films(id) ON DELETE CASCADE,
-  ticket_id INT8 REFERENCES tickets(id) ON DELETE CASCADE,
   screening_time VARCHAR(255),
   max_tickets INT8
 );

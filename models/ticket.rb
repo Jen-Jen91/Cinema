@@ -43,15 +43,16 @@ class Ticket
   end
 
 
-  def update()
-    sql = "
-      UPDATE tickets
-      SET customer_id = $1, film_id = $2
-      WHERE id = $3;
-    "
-    values = [@customer_id, @film_id, @id]
-    SqlRunner.run(sql, values)
-  end
+# Don't really need an update method - would change customer/film instead
+  # def update()
+  #   sql = "
+  #     UPDATE tickets
+  #     SET customer_id = $1, film_id = $2
+  #     WHERE id = $3;
+  #   "
+  #   values = [@customer_id, @film_id, @id]
+  #   SqlRunner.run(sql, values)
+  # end
 
 
   def self.find(id)
@@ -59,6 +60,6 @@ class Ticket
     result = SqlRunner.run(sql, [id])
     return Ticket.new(result[0])
   end
-  
+
 
 end
