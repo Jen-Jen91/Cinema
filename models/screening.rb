@@ -12,7 +12,6 @@ class Screening
     @max_tickets = options["max_tickets"].to_i()
   end
 
-
   def save()
     sql = "
       INSERT INTO screenings(film_id, screening_time, max_tickets)
@@ -24,25 +23,21 @@ class Screening
     @id = result[0]["id"].to_i()
   end
 
-
   def self.delete_all()
     sql = "DELETE FROM screenings;"
     SqlRunner.run(sql)
   end
-
 
   def delete()
     sql = "DELETE FROM screenings WHERE id = $1"
     SqlRunner.run(sql, [@id])
   end
 
-
   def self.all()
     sql = "SELECT * FROM screenings;"
     results = SqlRunner.run(sql)
     return results.map {|screening| Screening.new(screening)}
   end
-
 
   def update()
     sql = "
@@ -54,13 +49,11 @@ class Screening
     SqlRunner.run(sql, values)
   end
 
-
   def self.find(id)
     sql = "SELECT * FROM screenings WHERE id = $1;"
     result = SqlRunner.run(sql, [id])
     return Screening.new(result[0])
   end
-
 
   def available_tickets()
     sql = "SELECT * FROM tickets WHERE tickets.id = $1"
@@ -68,7 +61,6 @@ class Screening
     tickets = results.map {|ticket| Ticket.new(ticket)}
     return @max_tickets - tickets.length()
   end
-
 
   def film()
     sql = "SELECT * FROM films
@@ -78,13 +70,5 @@ class Screening
     film = results.map {|film| Film.new(film)}
     return film
   end
-
-
-  # def sell_ticket()
-  #   result = available_tickets
-  #   result -= 1
-  #   update()
-  # end
-
 
 end

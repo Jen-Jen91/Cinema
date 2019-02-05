@@ -11,7 +11,6 @@ class Customer
     @funds = options["funds"].to_i()
   end
 
-
   def save()
     sql = "
       INSERT INTO customers(name, funds)
@@ -23,25 +22,21 @@ class Customer
     @id = result[0]["id"].to_i()
   end
 
-
   def self.delete_all()
     sql = "DELETE FROM customers;"
     SqlRunner.run(sql)
   end
-
 
   def delete()
     sql = "DELETE FROM customers WHERE id = $1"
     SqlRunner.run(sql, [@id])
   end
 
-
   def self.all()
     sql = "SELECT * FROM customers;"
     results = SqlRunner.run(sql)
     return results.map {|customer| Customer.new(customer)}
   end
-
 
   def update()
     sql = "
@@ -53,13 +48,11 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
-
   def self.find(id)
     sql = "SELECT * FROM customers WHERE id = $1;"
     result = SqlRunner.run(sql, [id])
     return Customer.new(result[0])
   end
-
 
   def films()
     sql = "
@@ -71,7 +64,6 @@ class Customer
     results = SqlRunner.run(sql, [@id])
     return results.map{|film| Film.new(film)}
   end
-
 
   def buy_ticket(screening)
     sql = "
@@ -87,7 +79,6 @@ class Customer
     # update()
   end
 
-
   def tickets()
     sql = "
       SELECT * FROM tickets
@@ -96,6 +87,5 @@ class Customer
     results = SqlRunner.run(sql, [@id]).to_a()
     return results.length()
   end
-
 
 end

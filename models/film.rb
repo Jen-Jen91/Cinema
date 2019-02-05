@@ -11,7 +11,6 @@ class Film
     @price = options["price"].to_i()
   end
 
-
   def save()
     sql = "
       INSERT INTO films(title, price)
@@ -23,25 +22,21 @@ class Film
     @id = result[0]["id"].to_i()
   end
 
-
   def self.delete_all()
     sql = "DELETE FROM films;"
     SqlRunner.run(sql)
   end
-
 
   def delete()
     sql = "DELETE FROM films WHERE id = $1"
     SqlRunner.run(sql, [@id])
   end
 
-
   def self.all()
     sql = "SELECT * FROM films;"
     results = SqlRunner.run(sql)
     return results.map {|film| Film.new(film)}
   end
-
 
   def update()
     sql = "
@@ -53,13 +48,11 @@ class Film
     SqlRunner.run(sql, values)
   end
 
-
   def self.find(id)
     sql = "SELECT * FROM films WHERE id = $1;"
     result = SqlRunner.run(sql, [id])
     return Film.new(result[0])
   end
-
 
   def customers()
     sql = "
@@ -72,11 +65,9 @@ class Film
     return results.map{|customer| Customer.new(customer)}
   end
 
-
   def how_many_customers()
     customers.length()
   end
-
 
   def popular_time()
     sql = "
@@ -89,6 +80,5 @@ class Film
     times = screenings.map{|s_time| s_time.screening_time}
     return times.max_by{|time| times.count(time)}
   end
-
 
 end
